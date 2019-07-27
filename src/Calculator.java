@@ -2,64 +2,54 @@ import java.util.Scanner;
 
 public class Calculator {
   public static void main(String[] args) {
-    System.out.println("Available Functions:");
-    System.out.println("1: log_b(x)");
-
-    //        String op = scanner.next();
-    //        int right = scanner.nextInt();
-
     // initialization
-    int choice = 0;
-    choice = getChoice(choice);
+    int choice = -1;
+    while (choice != 0) {
+      choice = getChoice();
 
-    if (choice == 1) {
+      if (choice == 1) {
 
-      double variable = Double.NaN;
-      double base = Double.NaN;
+        double variable = Double.NaN;
+        double base = Double.NaN;
 
-      do {
-        base = getBase();
+        do {
+          base = getBase();
 
-      } while (Double.isNaN(base));
+        } while (Double.isNaN(base));
 
-      do {
-        variable = getVariable();
+        do {
+          variable = getVariable();
 
-      } while (Double.isNaN(variable));
+        } while (Double.isNaN(variable));
 
-      System.out.println("base = " + base);
-      System.out.println("x = " + variable);
-      //      double x = 2;
-      //      double x = 250;
-      //      double y = 0.5;
-      //      double result = Math.pow(x, y);
-      //      double result = power(x, y);
-      double result = log(base, variable);
-      //      double math_res = Math.pow(x, y);
-      //      double math_res = Math.log(x);
-      System.out.println("log_" + base + "(" + variable + ") = " + result);
-      //      System.out.println("math_res = " + math_res);
-      //
+        System.out.println("base = " + base + "; x = " + variable);
+        double result = log(base, variable);
+        System.out.println("log_" + base + "(" + variable + ") = " + result + "\n");
+      }
+
+      if (choice != 0 && choice != 1) {
+        System.out.println("Chosen function is not available. Please try again.\n");
+      }
+
+      if (choice == 0) {
+        System.out.println("Goodbye!");
+      }
     }
   }
 
-  /**
-   * @param choice int number of the selected function
-   * @return valid choice
-   */
-  public static int getChoice(int choice) {
-    do {
-      System.out.println("Enter the index of the function you would like to use:");
-      Scanner scanner = new Scanner(System.in);
-      if (scanner.hasNextInt()) {
-        choice = scanner.nextInt();
-      }
-      if (choice != 1) {
-        System.out.println("Chosen function is not available. Please try again.");
-      }
+  /** @return valid choice */
+  public static int getChoice() {
+    int input = -1;
+    System.out.println("Available Functions:");
+    System.out.println("0: exit");
+    System.out.println("1: log_b(x)");
 
-    } while (choice != 1);
-    return choice;
+    System.out.println("Enter the index of the function you would like to use:");
+    Scanner scanner = new Scanner(System.in);
+    if (scanner.hasNextInt()) {
+      input = scanner.nextInt();
+    }
+    return input;
   }
 
   public static double getBase() {
