@@ -13,10 +13,19 @@ public class Calculator {
     choice = getChoice(choice);
 
     if (choice == 1) {
-      double base = 0;
-      double variable = 0;
-      base = getBase(base);
-      variable = getVariable(variable);
+
+      double variable = Double.NaN;
+      double base = Double.NaN;
+
+      do {
+        base = getBase();
+
+      } while (Double.isNaN(base));
+
+      do {
+        variable = getVariable();
+
+      } while (Double.isNaN(variable));
 
       System.out.println("base = " + base);
       System.out.println("x = " + variable);
@@ -53,47 +62,62 @@ public class Calculator {
     return choice;
   }
 
-  public static double getBase(double base) {
-    do {
+  public static double getBase() {
+    double input = Double.NaN;
+    try {
       System.out.println("Input a logarithm base:");
       Scanner scanner = new Scanner(System.in);
       if (scanner.hasNextDouble()) {
-        base = scanner.nextDouble();
+        input = scanner.nextDouble();
 
-        if (base < 0) {
-          System.out.println("The base of a logarithm must be positive. Please try again.");
+        if (input < 0) {
+          input = Double.NaN;
+          throw new IllegalArgumentException(
+              "The base of a logarithm must " + "be positive. Please try again.");
         }
 
-        if (base == 0 || base == 1) {
-          System.out.println(
-              "The base of a logarithm must not be equal to "
-                  + Integer.toString((int) base)
-                  + ". Please try again.");
+        if (input == 0 || input == 1) {
+          input = Double.NaN;
+          throw new IllegalArgumentException(
+              "The base of a logarithm must not be equal to 0 or 1." + " Please try again.");
         }
       } else {
-        System.out.println("The base of a logarithm must be a real number. Please try again.");
+        input = Double.NaN;
+        throw new IllegalArgumentException(
+            "The base of a logarithm must be a real number. Please try again.");
       }
-    } while (base < 0 || base == 0 || base == 1);
-    return base;
+
+    } catch (Exception e) {
+      System.err.println(e.getMessage());
+    }
+    return input;
   }
 
-  public static double getVariable(double x) {
-    do {
-      System.out.println("Input the variable x:");
+  public static double getVariable() {
+    double input = Double.NaN;
+    try {
+
+      System.out.println("Input the variable x value:");
       Scanner scanner = new Scanner(System.in);
       if (scanner.hasNextDouble()) {
-        x = scanner.nextDouble();
+        input = scanner.nextDouble();
 
-        if (x < 0 || x == 0) {
-          System.out.println(
-              "A logarithm function is only defined on the ]0;+\u221e] interval. Please try again.");
+        if (input < 0 || input == 0) {
+          input = Double.NaN;
+          throw new IllegalArgumentException(
+              "The logarithm function is only defined for x within ]0;+\u221e]. Please try again.");
         }
 
       } else {
-        System.out.println("The variable for a logarithm must be a real number. Please try again.");
+        input = Double.NaN;
+        throw new IllegalArgumentException(
+            "The variable for a logarithm must be a real number. Please try again.");
       }
-    } while (x < 0 || x == 0);
-    return x;
+    } catch (Exception e) {
+      System.err.println(e.getMessage());
+    }
+
+    return input;
   }
 
   public static double log(double base, double x) {
@@ -111,7 +135,8 @@ public class Calculator {
     return result;
   }
 
-  // reference: https://stackoverflow.com/questions/3518973/doubleing-point-exponentiation-without-power-function
+  // reference for square and power functions:
+  // https://stackoverflow.com/questions/3518973/doubleing-point-exponentiation-without-power-function
   static double square(double x) {
     return x * x;
   }
@@ -128,7 +153,8 @@ public class Calculator {
   static double power(double base, double power) {
     return power(base, power, .0000000000000001);
   }
-  // reference: https://rekinyz.wordpress.com/2015/01/20/implement-simple-sqrt-with-java/
+  // reference for square root function:
+  // https://rekinyz.wordpress.com/2015/01/20/implement-simple-sqrt-with-java/
   static double sqrt(double x) {
     if (x == 0) return 0;
     double last = 0.0;
