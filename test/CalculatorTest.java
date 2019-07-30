@@ -10,6 +10,19 @@ import org.junit.runners.BlockJUnit4ClassRunner;
 @RunWith(value = BlockJUnit4ClassRunner.class)
 public class CalculatorTest extends TestCase {
 
+  /* requirement F4.v1 function selection */
+  @Test
+  public void testFunctionSelection() {
+    Calculator tester = new Calculator();
+    int number = 1;
+    String input = "1";
+    InputStream in = new ByteArrayInputStream(input.getBytes());
+    System.setIn(in);
+    System.out.println("select function input = " + input);
+    int result = tester.getChoice();
+    assertEquals(result, number);
+  }
+
   /* requirement F4.1v1 logarithm base initialization */
   @Test
   public void setBaseValue() {
