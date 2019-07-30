@@ -10,6 +10,7 @@ How to:
 - import project in IntelliJ or Eclipse
 - /src contains the Calculator Class and main method to execute (text based interface)
 - /test contains all the unit tests and can be executed by running the Class CalculatorTest.
+- /out contains the .jar file
 
 Run:
 - .jar file is in \SOEN6011_TeamC_N4\out\artifacts\SOEN6011_TeamC_N4_jar\SOEN6011_TeamC_N4.jar
