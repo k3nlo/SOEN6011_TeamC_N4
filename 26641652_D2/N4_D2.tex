@@ -1,0 +1,135 @@
+\documentclass[12pt]{extarticle}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{framed}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{enumerate}
+\usepackage[utf8]{inputenc}
+\usepackage[top=1 in,bottom=1in, left=1 in, right=1 in]{geometry}
+
+\newcommand{\matlab}{{\sc Matlab} }
+\newcommand{\cvec}[1]{{\mathbf #1}}
+\newcommand{\rvec}[1]{\vec{\mathbf #1}}
+\newcommand{\ihat}{\hat{\textbf{\i}}}
+\newcommand{\jhat}{\hat{\textbf{\j}}}
+\newcommand{\khat}{\hat{\textbf{k}}}
+\newcommand{\minor}{{\rm minor}}
+\newcommand{\trace}{{\rm trace}}
+\newcommand{\spn}{{\rm Span}}
+\newcommand{\rem}{{\rm rem}}
+\newcommand{\ran}{{\rm range}}
+\newcommand{\range}{{\rm range}}
+\newcommand{\mdiv}{{\rm div}}
+\newcommand{\proj}{{\rm proj}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\<}{\langle}
+\renewcommand{\>}{\rangle}
+\renewcommand{\emptyset}{\varnothing}
+\newcommand{\attn}[1]{\textbf{#1}}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+\newtheorem*{note}{Note}
+\newtheorem{exercise}{Exercise}
+\newcommand{\bproof}{\bigskip {\bf Proof. }}
+\newcommand{\eproof}{\hfill\qedsymbol}
+\newcommand{\Disp}{\displaystyle}
+\newcommand{\qe}{\hfill\(\bigtriangledown\)}
+\setlength{\columnseprule}{1 pt}
+
+
+\title{SOEN 6011: Project Deliverable 2}
+\author{Team C, Student N4: Kenlo Dinh Van, 26641652}
+\date{July 29, 2019}
+
+\begin{document}
+
+\maketitle
+
+\section{Logarithmic Function Implementation}
+\subsection{Repository}
+The following report, source code and all artifacts are available on the following GitHub repository. \textbf{[1]}
+
+\subsection{Programming Style}
+Following Team C discussions, we've decided to follow Google's Java Style Guide \textbf{[2]} for all of our respective functions implementation. Two additional IntelliJ plugins were used to ensure the source code would conform to the Google's Java Style Guide.\\ \\
+The \textbf{google-java-format plugin }\textbf{[3]} integrates within IntelliJ IDE and allows code reformatting at the press of a keyboard shortcut.\\
+\textbf{Advantages:} Convenient and fast way to reformat source code.\\
+\textbf{Disadvantages:} Covers only indentation and formatting.\\ \\
+The \textbf{CheckStyle plugin }\textbf{[3]} is a development tool that help ensure that the written Java code follows a selected coding standard. In our case it provided underlined warnings whenever code was comforming to Google's Java style.\\
+\textbf{Advantages:} Native support for Sun and Google's coding standard, possibility to add additional style.\\
+\textbf{Disadvantages:} Invasive, Abundance of warnings while programming within the IDE.\\
+
+\subsection{Error Handling}
+In this implementation we've focused on handling errors due to user input, such as an input value out of the function's domain or textual input instead of numbers. Critical methods such as getBase() and getVariable() were implemented with try/catch blocks, throwing IllegalArgumentException with an error message specifying the non-acceptable or acceptable values.
+
+\subsection{Debugging}
+\textbf{Description.} Throughout the development of this project, we've used IntelliJ's native debugger. It allows placing break points within the source code, which pauses the program's execution at a given point and allow us to visualize each variable value before they are further processed.\\
+\textbf{Advantages} No configuration needed, already well integrated within the IDE.\\
+\textbf{Disadvantages} Usage is a bit complex, required browsing the online documentation.
+
+
+\subsection{Implementation}
+The \textbf{second algorithm} detailed in answer to Problem 3 was implemented. It relied on the Natural Algorithm Approximation followed by a change of base.
+
+\begin{equation*}
+\ln(x)\ =\ \lim_{n\rightarrow\infty}\ n{\ (\ x^{1/n}\ }-\ 1)}
+\end{equation*}
+\textbf{{Advantages}}{:} Simpler implementation.\\
+\textbf{{Disadvantages}}{:} Lack of precision.
+Detailed instructions on how to execute the program are included int the README.md file.
+
+\subsection{Utility Functions}
+In order to not use any native or external Java library or package, additional functions needed to be implemented. These implementation relied on partial solution provided online by fellow programmers.\textbf{[5][6]} The square, power and square root functions fall under this category.
+
+
+\subsection
+{Quality attributes}
+In order to ensure the quality of the implementation further steps were added to the development process.\\ \\
+\textbf{Correctness:} In order to ensure the provided results were correct, multiple tests and comparisons were done with Java's native logarithmic functions, results were conclusive with a precision of  1.0 x 10^-^7. \\ 
+
+\noindent\textbf{Efficiency:} Throughout the testing process, we ensured that all results were displayed within 1 second with no noticeable lag.\\
+
+\noindent\textbf{Maintainability:} The program has been subdivided in 10 functions, with each function carrying one functionality/purpose. The variable names were chosen to make the program more understandable. Each feature was refactored and isolated into its own function once it was confirmed to work.\\ \\
+
+\noindent\textbf{Robustness:} Robustness is ensured by handling most of the possible errors that can occur during the program execution. The errors are mainly triggered by not acceptable or out of domain user inputs.\\ \\
+\noindent\textbf{Usability:}Minimal textual interface with 2 choices: terminate the program or use the logarithmic functionality. The function execute within a loop, in order to test multiple log values, until the user decides to exit the program.\\ 
+
+
+\section{Unit Testing}
+All the following unit tests are contained within the class CalculatorTest. All tests were developed using the framework Junit4.
+\subsection{Requirements Traceability}
+\textbf{F4.0.v1 Function Selection:} the \textit{testFunctionSelection} insure that the user keyboard input is correctly read, and the logarithmic function has been selected. \\ \\
+\textbf{F4.1.v1 Logarithm Base Initialization:} the \textit{setBaseValue} test insure the desired base value is correctly stored before calculation. \\ \\
+\textbf{F4.2.v1 Logarithm Base Validation: } the tests \textit{baseNotNegative, baseNotZero, baseNotOne, baseMustBeNumber} ensure that user input-ed values are correct and valid for further calculation. \\ \\
+\textbf{F4.3.v1 Logarithm Variable Initialization:} the test \textit{setVariableValue} ensure that the variable value is correctly stored before calculation. \\ \\
+\textbf{F4.4.v1 Logarithm Variable Validation:} the Tests \textit{variableNotNegative, variableNotZero} ensure that the desired variable is within the function's domain. \\ \\
+\textbf{F4.5.v1 Logarithm Calculation:} the test \textit{calculateLogarithm} ensure that the approximated result is comparable to Java's native logarithmic function.\\ \\
+\textbf{F4.6.v1 Result Display:} no further unit test was written to ensure that results were correctly displayed, we relied trusted Java's System. functions.
+
+\subsection{JUnit Guideline}
+The JUnit guide from TutorialsPoint \textbf{[7]} was used in order to write the aforementioned unit tests.
+
+
+
+
+\section*{References}
+\textbf{[1]} \url{https://github.com/k3nlo/SOEN6011\_TeamC\_N4}\\
+\textbf{[2]} \url{https://google.github.io/styleguide/javaguide.html}\\
+\textbf{[3]} \url{https://plugins.jetbrains.com/plugin/8527-google-java-format}\\
+\textbf{[4]} \url{https://plugins.jetbrains.com/plugin/1065-checkstyle-idea}\\
+\textbf{[5]} \url{https://stackoverflow.com/questions/3518973/doubleing-point-exponentiation-without-power-function}\\
+\textbf{[6]} \url{https://rekinyz.wordpress.com/2015/01/20/implement-simple-sqrt-with-java/}\\
+\textbf{[7]} \url{https://www.tutorialspoint.com/junit/junit_writing_tests.htm}\\
+
+
+
+\end{document}
