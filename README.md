@@ -1,7 +1,13 @@
-# SOEN6011 Team C Student N4
+# Logarithm Function Implementation (Java)
+Course: SOEN6011 
+Team C 
 Function F4: Logarithmic Function Log_b(x)
-Student Name: Kenlo DINH VAN (N4)
+Student Name: Kenlo DINH VAN (Student N4)
 Student Id: 26641652
+
+This function aims to approximate the value of a logarithm (log_b(x)0) for a given base (b).
+
+Reports were done in Latex and organized in subfolder (D1 to D4)
 
 Activity log;
 - July 29th 2019: added in the report
