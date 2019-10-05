@@ -1,4 +1,4 @@
-# Logarithm Function Implementation (Java)
+# Logarithmic Function Implementation (Java)
 
 Course: SOEN6011
 Team C
@@ -7,7 +7,8 @@ Student Name: Kenlo DINH VAN (Student N4)
 Student Id: 26641652
 
 
-This function aims to approximate the value of a logarithm log_b(x) for a given base (b).
+This function aims to approximate the value of a logarithm log_b(x) for a given base (b). 
+Implementation does not rely on Java's Math class.
 
 Reports were done in Latex and organized in subfolder (D1 to D4)
 
